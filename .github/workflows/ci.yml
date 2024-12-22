@@ -41,7 +41,12 @@ jobs:
         run: |
           curl -sSL https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.0/dependency-check-6.5.0-release.zip -o dependency-check.zip
           unzip dependency-check.zip
-          mv dependency-check-6.5.0 dependency-check # Corrigindo o nome do diretório aqui
+
+          # Verificar conteúdo extraído
+          ls -la
+
+          # Ajustar o nome do diretório se necessário
+          mv dependency-check-6.5.0 dependency-check || mv dependency-check dependency-check
           chmod +x dependency-check/bin/dependency-check.sh
 
       # Rodar OWASP Dependency-Check
