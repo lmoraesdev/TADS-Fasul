@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  owasp-dependency-check:
+  ci-pipeline:
     runs-on: ubuntu-latest
     steps:
       # Passo 1: Baixar e extrair OWASP Dependency-Check
@@ -34,9 +34,6 @@ jobs:
         run: |
           cat ./relatorios/dependency-check-report.html
 
-  python-setup:
-    runs-on: ubuntu-latest
-    steps:
       # Passo 4: Configurar o Python
       - name: Set up Python
         uses: actions/setup-python@v4
