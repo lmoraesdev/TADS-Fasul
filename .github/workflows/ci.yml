@@ -15,10 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Configuração de Python (já está no seu pipeline atual)
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.13'
 
       - name: Install dependencies
         run: |
@@ -29,3 +30,27 @@ jobs:
 
       - name: Run Tests
         run: pytest
+
+  owasp-dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Baixar o OWASP Dependency-Check
+      - name: Baixar OWASP Dependency-Check
+        run: |
+          curl -sSL https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.0/dependency-check-6.5.0-release.zip -o dependency-check.zip
+          unzip dependency-check.zip
+          mv dependency-check-* dependency-check
+          chmod +x dependency-check/bin/dependency-check.sh
+
+      # Rodar OWASP Dependency-Check no diretório do projeto
+      - name: Rodar OWASP Dependency-Check
+        run: |
+          ./dependency-check/bin/dependency-check.sh --project "TADS-Fasul" --scan ./Semestre-1/ --format "HTML" --out ./relatorios
+
+      # Exibir o relatório gerado
+      - name: Exibir Relatório
+        run: |
+          cat ./relatorios/dependency-check-report.html
