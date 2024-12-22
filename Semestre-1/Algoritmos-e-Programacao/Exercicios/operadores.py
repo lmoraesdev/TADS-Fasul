@@ -1,6 +1,5 @@
-# OPERADORES UNARIOS
-print("\n---------------------\nOPERADORES UNARIOS")
-
+# OPERADORES UNÁRIOS
+print("\n---------------------\nOPERADORES UNÁRIOS")
 print("Operador '~' : ", ~10)
 print("Operador '+' : ", +10)
 print("Operador '-' : ", -10)
@@ -20,9 +19,6 @@ print("Operador '//' : ", x // y)
 
 # OPERADORES RELACIONAIS
 print("\n---------------------\nOPERADORES RELACIONAIS")
-x = 10
-y = 5
-
 print("Operador '==' : ", x == y)
 print("Operador '!=' : ", x != y)
 print("Operador '>' : ", x > y)
@@ -30,15 +26,15 @@ print("Operador '<' : ", x < y)
 print("Operador '>=' : ", x >= y)
 print("Operador '<=' : ", x <= y)
 
-# OPERADORES ARITMÉTICOS
+# OPERADORES LÓGICOS
 print("\n---------------------\nOPERADORES LÓGICOS")
-x = True
-y = False
+a = True
+b = False
 
-print("Operador 'and' : ", x and y)
-print("Operador 'or' : ", x or y)
-print("Operador 'and not' : ", x and not y)
-print("Operador 'not' : ", not x)
+print("Operador 'and' : ", a and b)
+print("Operador 'or' : ", a or b)
+print("Operador 'and not' : ", a and not b)
+print("Operador 'not' : ", not a)
 
 # OPERADORES DE ATRIBUIÇÃO
 print("\n---------------------\nOPERADORES DE ATRIBUIÇÃO")
@@ -69,15 +65,15 @@ print("Operador '//=' : ", x)
 # PRECEDÊNCIA DE OPERADORES
 print("\n---------------------\nPRECEDÊNCIA DE OPERADORES")
 
-# 1. EXPOENTE E UNARIOS
-print(-(2**2))
-print(2**-2)
+# 1. EXPOENTE E UNÁRIOS
+print("-(2**2) : ", -(2**2))
+print("2**-2 : ", 2**-2)
 
-# 2. aritméticos. primeiro multiplicação e divisão, depois soma e subtração
-print(1 + 3 / 3 * 1)
+# 2. Aritméticos: multiplicação e divisão têm precedência sobre soma e subtração
+print("1 + 3 / 3 * 1 : ", 1 + 3 / 3 * 1)
 
-# 3. Depois de comparação, seguindo de igualde
-print(False != 3 > 2)
+# 3. Comparação seguida de igualdade
+print("False != 3 > 2 : ", False != 3 > 2)
 
 # 4. Por fim, operadores lógicos
-print(False != 3 > 2 and True)
+print("False != 3 > 2 and True : ", False != 3 > 2 and True)
