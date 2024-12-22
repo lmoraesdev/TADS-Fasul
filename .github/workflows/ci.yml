@@ -9,10 +9,13 @@ on:
       - main
 
 jobs:
-  ci-pipeline:
+  owasp-dependency-check:
     runs-on: ubuntu-latest
     steps:
-      # Passo 1: Baixar e extrair OWASP Dependency-Check
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Baixar OWASP Dependency-Check
       - name: Baixar OWASP Dependency-Check
         run: |
           curl -sSL https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.0/dependency-check-6.5.0-release.zip -o dependency-check.zip
@@ -24,31 +27,34 @@ jobs:
           # Não é necessário mover, o diretório extraído já é 'dependency-check'
           chmod +x dependency-check/bin/dependency-check.sh
 
-      # Passo 2: Rodar OWASP Dependency-Check
+      # Rodar OWASP Dependency-Check
       - name: Rodar OWASP Dependency-Check
         run: |
           ./dependency-check/bin/dependency-check.sh --project "TADS-Fasul" --scan ./Semestre-1/ --format "HTML" --out ./relatorios
 
-      # Passo 3: Exibir Relatório
+      # Exibir Relatório
       - name: Exibir Relatório
         run: |
           cat ./relatorios/dependency-check-report.html
 
-      # Passo 4: Configurar o Python
+  lint-and-test:
+    runs-on: ubuntu-latest
+    needs: owasp-dependency-check # Garante que este job só será executado após o primeiro
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      # Passo 5: Instalar dependências
       - name: Install dependencies
         run: |
           pip install flake8 pytest
 
-      # Passo 6: Rodar Linter
       - name: Run Linter
         run: flake8 . --max-line-length=100 --ignore=E203,E501,W503,E712
 
-      # Passo 7: Rodar Testes
       - name: Run Tests
         run: pytest
