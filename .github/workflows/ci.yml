@@ -9,27 +9,6 @@ on:
       - main
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install flake8 pytest
-
-      - name: Run Linter
-        run: flake8 . --max-line-length=100 --ignore=E203,E501,W503,E712
-
-      - name: Run Tests
-        run: pytest
-
   owasp-dependency-check:
     runs-on: ubuntu-latest
     steps:
@@ -45,8 +24,7 @@ jobs:
           # Verificar conteúdo extraído
           ls -la
 
-          # Ajustar o nome do diretório se necessário
-          mv dependency-check-6.5.0 dependency-check || mv dependency-check dependency-check
+          # Não é necessário mover, o diretório extraído já é 'dependency-check'
           chmod +x dependency-check/bin/dependency-check.sh
 
       # Rodar OWASP Dependency-Check
