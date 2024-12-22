@@ -73,7 +73,11 @@ print("2**-2 : ", 2**-2)
 print("1 + 3 / 3 * 1 : ", 1 + 3 / 3 * 1)
 
 # 3. Comparação seguida de igualdade
-print("False != 3 > 2 : ", False != 3 > 2)
+cond = False != 3 > 2
+if not cond:
+    print("False != 3 > 2 : ", cond)
 
 # 4. Por fim, operadores lógicos
-print("False != 3 > 2 and True : ", False != 3 > 2 and True)
+cond = False != 3 > 2 and True
+if cond:
+    print("False != 3 > 2 and True : ", cond)
