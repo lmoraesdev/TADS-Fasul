@@ -69,15 +69,13 @@ print("\n---------------------\nPRECEDÊNCIA DE OPERADORES")
 print("-(2**2) : ", -(2**2))
 print("2**-2 : ", 2**-2)
 
-# 2. Aritméticos: multiplicação e divisão têm precedência sobre soma e subtração
+# 2. Aritméticos: multiplicação e divisão têm precedência
+# sobre soma e subtração
+
 print("1 + 3 / 3 * 1 : ", 1 + 3 / 3 * 1)
 
 # 3. Comparação seguida de igualdade
-cond = False != 3 > 2
-if not cond:
-    print("False != 3 > 2 : ", cond)
+print("False != 3 > 2 : ", False != (3 > 2))
 
 # 4. Por fim, operadores lógicos
-cond = False != 3 > 2 and True
-if cond:
-    print("False != 3 > 2 and True : ", cond)
+print("False != 3 > 2 and True : ", (False != (3 > 2)) and True)
