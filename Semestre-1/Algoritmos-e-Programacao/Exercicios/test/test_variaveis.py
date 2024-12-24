@@ -1,5 +1,3 @@
-# test_variaveis.py
-
 from ..variaveis import verificar_tipo, converter_tipo
 
 
@@ -12,5 +10,5 @@ def test_verificar_tipo():
 def test_converter_tipo():
     assert converter_tipo("7", "int") == 7
     assert converter_tipo(7, "str") == "7"
-    assert converter_tipo("True", "bool") == True
+    assert converter_tipo("True", "bool") is True
     assert converter_tipo(3.14, "int") == 3

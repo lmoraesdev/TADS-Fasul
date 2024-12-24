@@ -1,5 +1,3 @@
-# test_operadores.py
-
 from ..operadores import (
     operadores_unarios,
     operadores_aritmeticos,
@@ -9,7 +7,10 @@ from ..operadores import (
 
 
 def test_operadores_unarios():
-    assert operadores_unarios(10) == {"~": -11, "+": 10, "-": -10}
+    resultado = operadores_unarios(10)
+    assert resultado["~"] == -11
+    assert resultado["+"] == 10
+    assert resultado["-"] == -10
 
 
 def test_operadores_aritmeticos():
@@ -22,11 +23,11 @@ def test_operadores_aritmeticos():
 
 def test_operadores_relacionais():
     resultado = operadores_relacionais(10, 5)
-    assert resultado["=="] == False
-    assert resultado[">"] == True
+    assert resultado["=="] is False
+    assert resultado[">"] is True
 
 
 def test_operadores_logicos():
     resultado = operadores_logicos(True, False)
-    assert resultado["and"] == False
-    assert resultado["or"] == True
+    assert resultado["and"] is False
+    assert resultado["or"] is True
