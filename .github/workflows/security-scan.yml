@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: owasp-report
-          path: ./owasp-report
+          path: ./owasp-report/dependency-check-report.html
 
   trivy-scan:
     runs-on: ubuntu-latest
@@ -40,13 +40,15 @@ jobs:
       - name: Install Trivy
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-          sudo mv ./trivy /usr/local/bin/
+          mv ./bin/trivy /usr/local/bin/trivy
 
       - name: Run Trivy
-        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
+        run: |
+          mkdir -p trivy-report
+          trivy fs . --exit-code 1 --severity HIGH,CRITICAL --format json --output ./trivy-report/trivy-report.json
 
       - name: Upload Trivy Report
         uses: actions/upload-artifact@v3
         with:
           name: trivy-report
-          path: ./trivy-report.json
+          path: ./trivy-report/trivy-report.json
