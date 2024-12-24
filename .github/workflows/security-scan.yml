@@ -15,21 +15,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Download OWASP Dependency-Check
+      - name: Baixar OWASP Dependency-Check
         run: |
           curl -sSL https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.0/dependency-check-6.5.0-release.zip -o dependency-check.zip
           unzip dependency-check.zip
+
+          # Verificar conteúdo extraído
+          ls -la
+
+          # Não é necessário mover, o diretório extraído já é 'dependency-check'
           chmod +x dependency-check/bin/dependency-check.sh
 
-      - name: Run OWASP Dependency-Check
+      - name: Rodar OWASP Dependency-Check
         run: |
-          ./dependency-check/bin/dependency-check.sh --project "Security Scan" --scan ./ --format "HTML" --out ./owasp-report
+          ./dependency-check/bin/dependency-check.sh --project "TADS-Fasul" --scan ./Semestre-1/ --format "HTML" --out ./relatorios
+
+      - name: Exibir Relatório
+        run: |
+          cat ./relatorios/dependency-check-report.html
 
       - name: Upload OWASP Report
         uses: actions/upload-artifact@v3
         with:
           name: owasp-report
-          path: ./owasp-report/dependency-check-report.html
+          path: ./relatorios/dependency-check-report.html
 
   trivy-scan:
     runs-on: ubuntu-latest

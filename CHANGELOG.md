@@ -2,6 +2,10 @@
 
 Todas as mudanças importantes serão documentadas neste arquivo.
 
+## [1.0.0] - 2024-12-23
+
+- refact
+
 ## [1.0.0] - 2024-12-22
 
 ### Adicionado na versão 1.0.0
