@@ -1,6 +1,6 @@
 # test_condicoes.py
 
-from condicoes import determinar_acao_chuva, determinar_acao_piscina, comparar_numeros
+from ..condicoes import determinar_acao_chuva, determinar_acao_piscina, comparar_numeros
 
 
 def test_determinar_acao_chuva():

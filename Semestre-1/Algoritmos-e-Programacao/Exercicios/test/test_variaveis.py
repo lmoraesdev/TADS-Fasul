@@ -1,6 +1,6 @@
 # test_variaveis.py
 
-from variaveis import verificar_tipo, converter_tipo
+from ..variaveis import verificar_tipo, converter_tipo
 
 
 def test_verificar_tipo():

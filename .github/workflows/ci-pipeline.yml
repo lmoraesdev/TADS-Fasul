@@ -1,0 +1,34 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          # Aqui, você pode incluir pacotes no futuro
+          echo "Nenhuma dependência para instalar no momento."
+
+      - name: Run Linter
+        run: |
+          echo "Nenhuma ferramenta de lint configurada ainda."
+
+      - name: Run Tests
+        run: |
+          echo "Nenhum teste implementado ainda."

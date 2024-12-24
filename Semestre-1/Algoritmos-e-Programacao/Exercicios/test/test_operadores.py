@@ -1,6 +1,6 @@
 # test_operadores.py
 
-from operadores import (
+from ..operadores import (
     operadores_unarios,
     operadores_aritmeticos,
     operadores_relacionais,
