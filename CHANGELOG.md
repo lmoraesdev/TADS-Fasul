@@ -2,6 +2,14 @@
 
 Todas as mudanças importantes serão documentadas neste arquivo.
 
+## [1.1.1] - 2025-01-07
+
+### Adicionado na versão 1.1.1
+
+- **Refatoração do pipeline **`ci-pipeline.yml`** para incluir etapas de lint e testes com melhor configuração.**
+  - Criação dos arquivos **`init.py`** para adequação do ambiente de testes.
+  - Configuração do **`pytest.ini`** para padronizar a execução dos testes com suporte ao modo de importação importlib.
+
 ## [1.1.0] - 2024-12-24
 
 ### Adicionado na versão 1.1.0
