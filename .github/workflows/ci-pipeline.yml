@@ -24,7 +24,7 @@ jobs:
         run: pip install pytest flake8
 
       - name: Run Lint
-        run: flake8 Semestre-1/Algoritmos-e-Programacao/Exercicios/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        run: flake8 Semestre-1/Algoritmos-e-Programacao/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Run Tests
         run: pytest --import-mode=importlib
