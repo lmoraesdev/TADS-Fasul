@@ -13,29 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Baixar OWASP Dependency-Check
-        run: |
-          curl -sSL https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.0/dependency-check-6.5.0-release.zip -o dependency-check.zip
-          unzip dependency-check.zip
-
-          # Verificar conteúdo extraído
-          ls -la
-
-          # Não é necessário mover, o diretório extraído já é 'dependency-check'
-          chmod +x dependency-check/bin/dependency-check.sh
-
-      - name: Rodar OWASP Dependency-Check
-        run: |
-          ./dependency-check/bin/dependency-check.sh --project "TADS-Fasul" --scan ./Semestre-1/ --format "HTML" --out ./relatorios
-
-      - name: Exibir Relatório
-        run: |
-          cat ./relatorios/dependency-check-report.html
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'TADS-Fasul'
+          path: './Semestre-1/'
+          format: 'HTML'
+          out: './relatorios'
+          args: '--failOnCVSS 7' # Falha se encontrar vulnerabilidades graves
 
       - name: Upload OWASP Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: owasp-report
           path: ./relatorios/dependency-check-report.html
@@ -44,20 +34,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Trivy
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-          mv ./bin/trivy /usr/local/bin/trivy
+          sudo apt-get update
+          sudo apt-get install -y trivy
 
       - name: Run Trivy
         run: |
-          mkdir -p trivy-report
-          trivy fs . --exit-code 1 --severity HIGH,CRITICAL --format json --output ./trivy-report/trivy-report.json
+          trivy fs . --exit-code 1 --severity HIGH,CRITICAL --format json --output trivy-report.json
 
       - name: Upload Trivy Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: trivy-report
-          path: ./trivy-report/trivy-report.json
+          path: trivy-report.json
