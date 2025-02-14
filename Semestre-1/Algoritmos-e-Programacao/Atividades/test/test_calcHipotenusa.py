@@ -11,8 +11,8 @@ def test_calcHipotenusa():
 
 def test_calcHipotenusa_decimais():
     """Testa cálculos com números decimais."""
-    assert calcular_hipotenusa(2.5, 6) == 6.5
-    assert calcular_hipotenusa(1.1, 2.2) == 2.46  # Considerando arredondamento
+    assert round(calcular_hipotenusa(2.5, 6), 2) == 6.5
+    assert round(calcular_hipotenusa(1.1, 2.2), 2) == 2.46  # Arredondamento
 
 
 def test_calcHipotenusa_erros():
@@ -24,4 +24,4 @@ def test_calcHipotenusa_erros():
                 False
             ), f"Erro esperado para valores {valores}, mas a função não falhou."
         except ValueError:
-            pass  # Exceção esperada, o teste passa
+            pass  # Exceção esperada, o teste passa.

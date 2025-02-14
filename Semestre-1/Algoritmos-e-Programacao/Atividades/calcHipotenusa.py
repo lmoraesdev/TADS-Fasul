@@ -1,21 +1,18 @@
 import math
 
 
-def calcular_hipotenusa():
-    try:
-        a = float(input("Digite o valor do cateto a: "))
-        b = float(input("Digite o valor do cateto b: "))
+def calcular_hipotenusa(a: float, b: float) -> float:
+    """Calcula a hipotenusa do triângulo retângulo dados os catetos a e b."""
+    if a <= 0 or b <= 0:
+        raise ValueError("Os valores dos catetos devem ser positivos.")
 
-        if a <= 0 or b <= 0:
-            print("Os valores dos catetos devem ser positivos.")
-            return
-
-        c = math.hypot(a, b)  # Usa math.hypot() para melhor precisão
-        print(f"\nCateto a: {a:.2f}\nCateto b: {b:.2f}\nHipotenusa: {c:.2f}")
-
-    except ValueError:
-        print("Por favor, insira um número válido.")
+    return math.hypot(a, b)
 
 
 if __name__ == "__main__":
-    calcular_hipotenusa()
+    try:
+        a = float(input("Digite o valor do cateto a: "))
+        b = float(input("Digite o valor do cateto b: "))
+        print(f"\nHipotenusa: {calcular_hipotenusa(a, b):.2f}")
+    except ValueError:
+        print("Por favor, insira um número válido.")
