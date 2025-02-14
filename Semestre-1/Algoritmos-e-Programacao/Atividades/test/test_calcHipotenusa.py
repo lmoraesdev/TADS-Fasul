@@ -1,4 +1,4 @@
-from calcHipotenusa import calcular_hipotenusa
+from ..calcHipotenusa import calcular_hipotenusa
 
 
 def test_calcHipotenusa():
